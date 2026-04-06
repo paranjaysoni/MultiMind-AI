@@ -58,8 +58,6 @@ class GraphBuilder:
         self.graph_builder.add_edge("summarize_news", "save result")
         self.graph_builder.add_edge("save result", END) #Same as making edge from "save result" to END
 
-
-
     def setup_graph(self, usecase):
         if usecase == "Basic Chatbot":
             self.basic_chatbot_build_graph()
