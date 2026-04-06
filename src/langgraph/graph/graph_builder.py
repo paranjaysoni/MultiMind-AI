@@ -42,6 +42,20 @@ class GraphBuilder:
         self.graph_builder.add_edge("tools", "chatbot")
         self.graph_builder.add_edge("chatbot", END)
 
+    def ai_news_builder_graph(self):
+        '''Build a news generator using langgraph & Tavily.'''
+        #Added Nodes
+        self.graph_builder.add_node("fetch_news", "")
+        self.graph_builder.add_node("summarize_news","")
+        self.graph_builder.add_node("save result","")
+
+        #Added Edges
+        self.graph_builder.set_entry_point("fetch_news") #Same as making edge from START to "fetch_news"
+        self.graph_builder.add_edge("fetch_news", "summarize_news")
+        self.graph_builder.add_edge("summarize_news", "save result")
+        self.graph_builder.set_exit_point("save result") #Same as making edge from "save result" to END
+
+
 
     def setup_graph(self, usecase):
         if usecase == "Basic Chatbot":
