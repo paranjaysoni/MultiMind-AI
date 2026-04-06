@@ -4,6 +4,7 @@ from src.langgraph.nodes.basic_chatbot_node import BasicChatbotNode
 from src.langgraph.tools.search_tool import get_tools, create_tool_nodes
 from langgraph.prebuilt import tools_condition, ToolNode
 from src.langgraph.nodes.chatbot_with_websearch import ChatbotWithWebSearchNode
+from src.langgraph.nodes.ai_news_node import AINewsNode
 
 class GraphBuilder:
     def __init__(self, model):
@@ -44,16 +45,18 @@ class GraphBuilder:
 
     def ai_news_builder_graph(self):
         '''Build a news generator using langgraph & Tavily.'''
+        
+        ai_news_node = AINewsNode(self.llm)
+        
         #Added Nodes
-        self.graph_builder.add_node("fetch_news", "")
-        self.graph_builder.add_node("summarize_news","")
-        self.graph_builder.add_node("save result","")
-
+        self.graph_builder.add_node("fetch_news", ai_news_node.fetch_news)
+        self.graph_builder.add_node("summarize_news", ai_news_node.summarize_news)
+        self.graph_builder.add_node("save result", ai_news_node.save_result)
         #Added Edges
         self.graph_builder.set_entry_point("fetch_news") #Same as making edge from START to "fetch_news"
         self.graph_builder.add_edge("fetch_news", "summarize_news")
         self.graph_builder.add_edge("summarize_news", "save result")
-        self.graph_builder.set_exit_point("save result") #Same as making edge from "save result" to END
+        self.graph_builder.add_edge("save result", END) #Same as making edge from "save result" to END
 
 
 
@@ -63,6 +66,9 @@ class GraphBuilder:
 
         elif usecase == "Chatbot with WebSearch":
             self.chatbot_with_websearch_build_graph()
+        
+        elif usecase == "AI News":
+            self.ai_news_builder_graph()
 
         else:
             raise ValueError(f"Invalid use case: {usecase}")
