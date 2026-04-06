@@ -7,7 +7,7 @@ class GraphBuilder:
         self.llm = model
         self.graph_builde=StateGraph(State)
     
-    def basic_chatbot_graph(self):
+    def basic_chatbot_build_graph(self):
         '''
         Build a basic chatbot using langgraph.
         '''
@@ -17,3 +17,14 @@ class GraphBuilder:
         self.graph_builder.add_node("chatbot", self.basic_chatboot_node.process)
         self.graph_builder.add_edge(START, "chatbot")
         self.graph_builder.add_edge("chatbot", END)
+
+    def setup_graph(self, usecase):
+        '''
+        Setup the graph according to the use case.
+        '''
+        if usecase == "basic_chatbot":
+            self.basic_chatbot_build_graph()
+        else:
+            raise ValueError(f"Use case {usecase} not supported.")
+        
+        return self.graph_builder
