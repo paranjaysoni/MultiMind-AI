@@ -243,8 +243,8 @@ It represents a shift toward:
 
 ## 📬 Connect
 
-* 💼 LinkedIn: *[https://github.com/paranjaysoni](Click Here)*
-* 🧑‍💻 GitHub: *[https://github.com/paranjaysoni](Click Here)*
+* 💼 LinkedIn: *[https://github.com/paranjaysoni]*
+* 🧑‍💻 GitHub: *[https://github.com/paranjaysoni]*
 
 ---
 
