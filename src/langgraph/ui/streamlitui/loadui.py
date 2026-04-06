@@ -11,6 +11,7 @@ class LoadStreamlitUI:
     def load_streamlit_ui(self):
         st.set_page_config(page_title=self.config.get_page_title(), page_icon=self.config.get_page_icon())
         st.title(self.config.get_page_title())
+        st.subheader("One AI. Multiple Minds. Infinite Possibilities.")
         st.session_state.timeframe = ''
         st.session_state.IsFetchButtonClicked = False
 
