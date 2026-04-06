@@ -1,4 +1,4 @@
-from typing_extensions import TypedDict, List
+from typing_extensions import TypedDict, list
 from langchain import add_message
 from typing import Annotated
 

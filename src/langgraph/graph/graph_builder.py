@@ -1,5 +1,6 @@
 from langgraph.graph import StateGraph, START, END
 from src.langgraph.state.state import State
+from src.langgraph.nodes.basic_chatbot_node import BasicChatbotNode
 
 class GraphBuilder:
     def __init__(self, model):
@@ -11,6 +12,8 @@ class GraphBuilder:
         Build a basic chatbot using langgraph.
         '''
 
-        self.graph_builder.add_node("chatbot", "")
+        self,basic_chatboot_node = BasicChatbotNode(self.llm)
+
+        self.graph_builder.add_node("chatbot", self.basic_chatboot_node.process)
         self.graph_builder.add_edge(START, "chatbot")
         self.graph_builder.add_edge("chatbot", END)
