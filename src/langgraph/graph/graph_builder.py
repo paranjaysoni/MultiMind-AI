@@ -24,21 +24,18 @@ class GraphBuilder:
         """
         Build a chatbot with web search capabilities using langgraph & Tavily.
         """
-
         #Tool & Tool Node
         tools = get_tools()
         tool_node = create_tool_nodes(tools)
-
         #LLM
         llm = self.llm
-
         #Chatbot Node
 
 
         #Add Node
         self.graph_builder.add_node("chatbot", "")
         self.graph_builder.add_node("tools", tool_node)
-        
+    
         #Edges
         self.graph_builder.add_edge(START, "chatbot")
         self.graph_builder.add_conditional_edges("chatbot", tools_condition)
