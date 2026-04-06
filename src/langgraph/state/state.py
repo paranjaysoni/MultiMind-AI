@@ -1,9 +1,9 @@
-from typing_extensions import TypedDict, list
-from langchain import add_message
-from typing import Annotated
+from typing import Annotated, List
+from typing_extensions import TypedDict
+from langgraph.graph.message import add_messages
 
 class State(TypedDict):
-    '''
+    """
     Represent the structure of the state used in graph
-    '''
-    messages: Annotated[list, add_message]
+    """
+    messages: Annotated[List, add_messages]

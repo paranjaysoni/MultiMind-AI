@@ -1,5 +1,5 @@
 import streamlit as st
-from langchain import HumanMessage, AIMessage, ToolMessage
+from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
 import json
 
 class DisplayResultStreamlit:

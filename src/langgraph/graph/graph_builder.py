@@ -5,26 +5,27 @@ from src.langgraph.nodes.basic_chatbot_node import BasicChatbotNode
 class GraphBuilder:
     def __init__(self, model):
         self.llm = model
-        self.graph_builde=StateGraph(State)
+        self.graph_builder = StateGraph(State)
     
     def basic_chatbot_build_graph(self):
-        '''
+        """
         Build a basic chatbot using langgraph.
-        '''
+        """
 
-        self,basic_chatboot_node = BasicChatbotNode(self.llm)
+        basic_chatbot_node = BasicChatbotNode(self.llm) 
 
-        self.graph_builder.add_node("chatbot", self.basic_chatboot_node.process)
+        self.graph_builder.add_node("chatbot", basic_chatbot_node.process)
         self.graph_builder.add_edge(START, "chatbot")
         self.graph_builder.add_edge("chatbot", END)
 
     def setup_graph(self, usecase):
-        '''
+        """
         Setup the graph according to the use case.
-        '''
-        if usecase == "basic_chatbot":
+        """
+        if usecase == "Basic Chatbot":
             self.basic_chatbot_build_graph()
+
         else:
-            raise ValueError(f"Use case {usecase} not supported.")
-        
-        return self.graph_builder
+            raise ValueError("Invalid use case")
+
+        return self.graph_builder.compile()
