@@ -8,5 +8,5 @@ class BasicChatbotNode:
         self.llm = model
 
     def process(self, state) -> dict:
-        '''Process the input state and return the output state'''
-        return {"messages": self.llm.invoke(state["messages"])}
+        response = self.llm.invoke(state["messages"])
+        return {"messages": [response]}

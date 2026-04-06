@@ -1,6 +1,7 @@
 '''Node Defination for chatbopt with WebSearch Functionality. This node will use the tools from Tavily to perform web search and other functions.'''
 
 from src.langgraph.state.state import State
+from langchain_core.messages import AIMessage
 
 class ChatbotWithWebSearchNode:
     '''Chatbot with WebSearch Logic Implementation'''
@@ -8,13 +9,11 @@ class ChatbotWithWebSearchNode:
         self.llm = model
 
     def process(self, state: State) -> dict:
-        '''Process the input state and generate a response using tool integration'''
-        user_input = state["messages"][-1] if state["messages"] else ""
-        llm_response = self.llm.invoke([{"role": "user", "content": user_input}])
-
-        tools_response = f"Tool Integration for: '{user_input}"
-
-        return {"messages" : [llm_response, tools_response]}
+        user_message = state["messages"][-1].content
+        response = self.llm.invoke(state["messages"])
+        return {
+            "messages": [response]
+        }
     
     def create_chatbot(self, tools):
         '''Returns a chatbot node function'''

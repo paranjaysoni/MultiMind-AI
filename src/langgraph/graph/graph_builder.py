@@ -44,15 +44,13 @@ class GraphBuilder:
 
 
     def setup_graph(self, usecase):
-        """
-        Setup the graph according to the use case.
-        """
         if usecase == "Basic Chatbot":
             self.basic_chatbot_build_graph()
-        if usecase == "Chatbot with WebSearch":
+
+        elif usecase == "Chatbot with WebSearch":
             self.chatbot_with_websearch_build_graph()
 
         else:
-            raise ValueError("Invalid use case")
+            raise ValueError(f"Invalid use case: {usecase}")
 
         return self.graph_builder.compile()
