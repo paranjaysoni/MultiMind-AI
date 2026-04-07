@@ -203,6 +203,8 @@ TAVILY_API_KEY = "your_tavily_api_key"
 streamlit run app.py
 ```
 
+## ▶️ Deployed Link: *[https://multimind-ai-paranjaysoni.streamlit.app/]*
+
 ---
 
 ## 🔮 Future Enhancements
